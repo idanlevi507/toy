@@ -5,4 +5,8 @@ export const routes = [
         path: '/',
         component: Home,
     },
+    {
+        path: '/toy',
+        component: ToysApp
+    }
 ]
