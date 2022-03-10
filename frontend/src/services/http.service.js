@@ -10,8 +10,17 @@ var axios = Axios.create({
 })
 
 export const httpService = {
+    get(endpoint, data) {
+        return ajaxDB(endpoint, 'GET', data)
+    },
+    post(endpoint, data) {
+        return ajaxDB(endpoint, 'POST', data)
+    },
+    put(endpoint, data) {
+        return ajaxDB(endpoint, 'PUT', data)
+    },
     getAPI(endpoint, data = null) {
-        console.log("5 - http ajaxDB");
+        console.log("5 - http ajaxapi");
         return ajaxAPI(endpoint, 'GET', data)
     }    
 }
@@ -23,6 +32,30 @@ async function ajaxAPI(endpoint, method = 'GET', data = null) {
             method
         })
         return res.data;
+    } catch (err) {
+        console.log(`Had Issues ${method}ing to the backend, endpoint: ${endpoint}, with data: ${data}`)
+        console.dir(err)
+        if (err.response && err.response.status === 401) {
+            // Depends on routing startegy - hash or history
+            window.location.assign('/#/login')
+            // window.location.assign('/login')
+            //     router.push('/login')
+            // }
+            throw err
+        }
+    }
+}
+
+async function ajaxDB(endpoint, method = 'GET', data = null) {
+    try {
+        console.log("3 - http ajaxDB" , endpoint);
+        const res = await axios({
+            url: `${BASE_URL}${endpoint}`,
+            method,
+            data,
+            params: (method === 'GET') ? data : null
+        })
+        return res.data
     } catch (err) {
         console.log(`Had Issues ${method}ing to the backend, endpoint: ${endpoint}, with data: ${data}`)
         console.dir(err)

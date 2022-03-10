@@ -5,8 +5,13 @@ import { httpService } from './http.service'
 // const BASE_URL = process.env.NODE_ENV === 'production' ? '/api/toy' : 'http://localhost:3030/api/toy'
 
 export const toyService = {
+    getFromAPI,
     query,
-    getFromAPI
+    save
+}
+
+function getFromAPI(pokeName) {
+    return httpService.getAPI(pokeName)
 }
 
 function query(filterBy) {
@@ -14,6 +19,10 @@ function query(filterBy) {
     return httpService.get(`toy`, filterBy)
 }
 
-function getFromAPI(pokeName) {
-    return httpService.getAPI(pokeName)
+function save(toy) {
+    if (toy._id) {
+        return httpService.put('toy', toy)
+    } else {
+        return httpService.post('toy', toy)
+    }
 }

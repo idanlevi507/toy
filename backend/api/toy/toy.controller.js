@@ -11,7 +11,19 @@ async function getToys(req, res) {
     }
 }
 
+async function saveToy(req, res) {
+    console.log(req , res);
+    const toyToSave = req.body
+    try {
+        const toy = await toyService.saveToy2(toyToSave)
+        res.send(toy)
+    } catch (err) {
+        res.status(500).send({ err })
+    }
+}
+
 
 module.exports = {
-    getToys
+    getToys,
+    saveToy
 }

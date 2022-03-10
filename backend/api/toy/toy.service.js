@@ -17,7 +17,19 @@ async function query(filterBy) {
     }
 }
 
+async function saveToy2(toy) {
+    try {
+        const collection = await dbService.getCollection('pokemonNew')
+        await collection.insertOne(toy)
+        console.log("toy delivered", toy);
+        return toy
+    } catch (err) {
+        throw err
+    }
+}
+
 
 module.exports = {
-    query
+    query,
+    saveToy2
 }
