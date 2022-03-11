@@ -28,8 +28,22 @@ async function saveToy2(toy) {
     }
 }
 
+async function remove(toyId) {
+    try {
+        const collection = await dbService.getCollection(collectionName)
+        await collection.deleteOne({ '_id': ObjectId(toyId) })
+    } catch (err) {
+        throw err
+    }
+    //     const idx = gToys.findIndex(currToy => currToy._id === toyId)
+    //     if (idx === -1) return Promise.reject('No such Toy')
+    //     gToys.splice(idx, 1)
+    //     return utilService.saveToysToFile(gToys, 'toy')
+}
+
 
 module.exports = {
     query,
-    saveToy2
+    saveToy2,
+    remove
 }

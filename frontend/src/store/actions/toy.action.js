@@ -29,6 +29,19 @@ export function addToy(pokemonName) {
     }
 }
 
+export function remove(toyId) {
+    console.log(toyId);
+    return async (dispatch) => {
+        try {
+            console.log(toyId);
+            await toyService.removeToy(toyId)
+            dispatch({ type: 'REMOVE_TOY', toyId })
+        } catch (err) {
+            throw err
+        }
+    }
+}
+
 function buildToyObject(apiResult) {
     if (!apiResult) return null;
     else return {

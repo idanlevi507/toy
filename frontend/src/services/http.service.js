@@ -19,10 +19,13 @@ export const httpService = {
     put(endpoint, data) {
         return ajaxDB(endpoint, 'PUT', data)
     },
+    delete(endpoint, data) {
+        return ajaxDB(endpoint, 'DELETE', data)
+    },   
     getAPI(endpoint, data = null) {
         console.log("5 - http ajaxapi");
         return ajaxAPI(endpoint, 'GET', data)
-    }    
+    }
 }
 
 async function ajaxAPI(endpoint, method = 'GET', data = null) {

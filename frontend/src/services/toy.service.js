@@ -7,7 +7,8 @@ import { httpService } from './http.service'
 export const toyService = {
     getFromAPI,
     query,
-    save
+    save,
+    removeToy
 }
 
 function getFromAPI(pokeName) {
@@ -25,4 +26,9 @@ function save(toy) {
     } else {
         return httpService.post('toy', toy)
     }
+}
+
+function removeToy(toyId, /* loggedinUser */) {
+    console.log(toyId);
+    return httpService.delete(`toy/${toyId}`)
 }
