@@ -11,6 +11,16 @@ async function getToys(req, res) {
     }
 }
 
+async function getById(req, res) {
+    const { toyId } = req.params
+    try {
+        const toy = await toyService.getById(toyId)
+        res.send(toy)
+    } catch (err) {
+        res.status(500).send({ err: 'faild to load toy' })
+    }
+}
+
 async function saveToy(req, res) {
     console.log(req , res);
     const toyToSave = req.body
@@ -25,5 +35,6 @@ async function saveToy(req, res) {
 
 module.exports = {
     getToys,
-    saveToy
+    saveToy,
+    getById
 }

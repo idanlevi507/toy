@@ -5,10 +5,11 @@ import { httpService } from './http.service'
 // const BASE_URL = process.env.NODE_ENV === 'production' ? '/api/toy' : 'http://localhost:3030/api/toy'
 
 export const toyService = {
-    getFromAPI,
     query,
     save,
-    removeToy
+    removeToy,
+    getById,
+    getFromAPI
 }
 
 function getFromAPI(pokeName) {
@@ -18,6 +19,10 @@ function getFromAPI(pokeName) {
 function query(filterBy) {
     console.log("2 - service");
     return httpService.get(`toy`, filterBy)
+}
+
+function getById(toyId) {
+    return httpService.get(`toy/${toyId}`)
 }
 
 function save(toy) {

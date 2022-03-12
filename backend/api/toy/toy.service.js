@@ -17,6 +17,16 @@ async function query(filterBy) {
     }
 }
 
+async function getById(toyId) {
+    try {
+        const collection = await dbService.getCollection(collectionName)
+        const toy = await collection.findOne({ '_id': ObjectId(toyId) })
+        return toy
+    } catch (err) {
+        throw err
+    }
+}
+
 async function saveToy2(toy) {
     try {
         const collection = await dbService.getCollection('pokemonNew')
@@ -45,5 +55,6 @@ async function remove(toyId) {
 module.exports = {
     query,
     saveToy2,
-    remove
+    remove,
+    getById
 }
