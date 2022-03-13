@@ -29,6 +29,17 @@ export function addToy(pokemonName) {
     }
 }
 
+export function updateToy(toyToUpdate) {
+    return async dispatch => {
+        try {
+            const toy = await toyService.save(toyToUpdate)
+            dispatch({ type: 'UPDATE_TOY', toy })
+        } catch (err) {
+            throw err
+        }
+    }
+}
+
 export function remove(toyId) {
     console.log(toyId);
     return async (dispatch) => {

@@ -10,5 +10,8 @@ export function toyReducer(state = initialState, action) {
             return { ...state, toys: [action.apiResult, ...state.toys] }
         case 'REMOVE_TOY':
             return { ...state, toys: state.toys.filter(toy => toy._id !== action.toyId) }
+        case 'UPDATE_TOY':
+            const idx = state.toys.findIndex(toy => toy._id === action.toy._id)
+            return { ...state, toys: [...state.toys.slice(0, idx), { ...action.toy }, ...state.toys.slice(idx + 1)] }
     }
 }
