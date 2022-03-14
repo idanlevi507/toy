@@ -6,6 +6,9 @@ export function toyReducer(state = initialState, action) {
     switch (action.type) {
         case 'SET_TOYS':
             return { ...state, toys: action.toys }
+        case 'SET_SEARCH_RESULT':
+            console.log("reducer", action);
+            return { ...state, searchedToy: action.apiResult }
         case 'ADD_TOY':
             return { ...state, toys: [action.apiResult, ...state.toys] }
         case 'REMOVE_TOY':

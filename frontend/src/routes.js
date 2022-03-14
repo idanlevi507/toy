@@ -1,9 +1,16 @@
 import Home from './pages/Home.jsx'
+import { ToyDetails } from './pages/ToyDetails.jsx'
+import { ToyEdit } from './pages/ToyEdit.jsx'
+import { ToysApp } from './pages/ToysApp.jsx'
 
 export const routes = [
     {
         path: '/toy/details/:toyId',
         component: ToyDetails
+    },
+    {
+        path: '/toy/edit/:toyId',
+        component: ToyEdit
     },
     {
         path: '/toy',

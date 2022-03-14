@@ -51,6 +51,17 @@ async function remove(toyId) {
     //     return utilService.saveToysToFile(gToys, 'toy')
 }
 
+function _buildCriteria(filterBy) {
+    const criteria = {}
+    if (filterBy.txt) {
+        criteria.name = { $regex: filterBy.txt, $options: 'i' }
+    }
+    if (filterBy.inStock !== 'all') {
+        criteria.inStock = { $exists: JSON.parse(filterBy.inStock) }
+    }
+    return criteria
+}
+
 
 module.exports = {
     query,

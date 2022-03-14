@@ -7,7 +7,6 @@ import { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { updateToy } from '../store/actions/toy.action.js'
-
 import { toyService } from '../services/toy.service.js'
 
 
