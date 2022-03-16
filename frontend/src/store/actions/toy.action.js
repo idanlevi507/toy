@@ -17,10 +17,8 @@ export function loadToys(filterBy = { txt: '', inStock: 'all' }) {
 export function addToy(pokemonName) {
     console.log("before", pokemonName);
     return async (dispatch) => {
-        console.log("im in");
         try {
             const apiResult = await toyService.getFromAPI(pokemonName)
-            console.log("after", apiResult);
             if (apiResult) toyService.save(buildToyObject(apiResult))
             else dispatch({ type: 'ADD_TOY', apiResult })
         } catch (err) {
