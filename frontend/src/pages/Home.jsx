@@ -29,18 +29,6 @@ const Home = () => {
         dispatch(addToy(searchInput));
     }
 
-
-    // function handleChange ( target ) {
-    //     const field = target.name;
-    //     const value = target.type === 'number' ? +target.value : target.value;
-    //     this.setState((prevState) => ({
-    //         user: { ...prevState.user, [field]: value || '' },
-    //     }));
-    // };
-    // let pokemonName = "";
-    // searchedToy = (!searchedToy) ? null : searchedToy
-
-
     return (
         <section className="home-page">
             <h1>Editor</h1>
@@ -51,14 +39,10 @@ const Home = () => {
             </form>
             <TextField id="remove" label="remove Input" value={deleteInput} onChange={handleInputChange} />
             <Button variant="contained" onClick={deletePokemon}>delete</Button>
-
             <section>
                 <CustomPaginationActionsTable />
             </section>
         </section>
-
-
-
     )
 }
 
